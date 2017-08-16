@@ -1,0 +1,39 @@
+Planets:
+  'e':
+    P: 0.789592
+    R: 1.810
+    M: 6.83
+    i: 85.98
+    T: 2457011.34861
+  'b':
+    P: 4.1591289
+    R: 12.63
+    M: 363.1
+    i: 88.98
+    T: 2457007.932132
+  'd':
+    P: 9.03077
+    R: 3.576
+    M: 13.1
+    i: 89.32
+    T: 2457006.36931
+  'c':
+    P: 588.5
+    R: 1.000
+    M: 398.2
+    e: 0.296
+    o: 1.96
+    i: 90.00
+    T: 2457763.4
+Star:
+  M: 1.040
+  R: 1.137
+Integrator:
+  BJD_range: [-500, 500]
+  Tref: 2457000.0000
+Settings:
+  code_dir: '/Users/malavolta/Astro/CODE/kepler_vs_dynamical_rvs/'
+  trades_dir: '/Users/malavolta/Astro/CODE/trades/'
+  GLSmod_dir: '/Users/malavolta/Astro/CODE/PyGLS/'
+  GLSout_dir: './GLS_analysis/'
+  output_rad: 'WASP-47'

@@ -1,0 +1,25 @@
+Planets:
+  'b':
+    P: 11.186
+    R: 1.0
+    M: 1.27
+    i: 90.0
+    T: 2457500.0000
+  'c':
+    P: 33.89358
+    R: 2.0
+    M: 12.7
+    i: 90.0
+    T: 2457500.0000
+Star:
+  M: 0.120
+  R: 0.015
+Integrator:
+  BJD_range: [-1000, 1000]
+  Tref: 2457500.0000
+Settings:
+  code_dir: '/Users/malavolta/Astro/CODE/kepler_vs_dynamical_rvs/'
+  trades_dir: '/Users/malavolta/Astro/CODE/trades/'
+  GLSmod_dir: '/Users/malavolta/Astro/CODE/PyGLS/'
+  GLSout_dir: './GLS_analysis/'
+  output_rad: 'ProximaCen_31_d1'
