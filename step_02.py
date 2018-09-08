@@ -35,18 +35,18 @@ for key in input_dict['Integrator']['planets_list']:
 
     plt.plot(n_transit, TTV*24*60)
     plt.scatter(n_transit, TTV*24*60)
-    plt.savefig('TTV_planet_' + key + '.pdf', bbox_inches='tight', dpi=300)
+    plt.savefig(input_dict['Settings']['output_rad'] + '_TTV_planet_' + key + '.pdf', bbox_inches='tight', dpi=300)
 
     plt.close(fig)
 
 print
 
-bash_script = open('./exec_trades_step_02.source', 'w')
+bash_script = open('./'+ input_dict['Settings']['output_rad'] + '_exec_trades_step_02.source', 'w')
 bash_script.write('export PWD_NOW=$PWD\n')
 
 for key in input_dict['Integrator']['planets_list']:
 
-    input_dict['Integrator']['output'][key] = './trades/planet_' + key + '/'
+    input_dict['Integrator']['output'][key] = input_dict['Integrator']['output']['system'] + '/planet_' + key + '/'
 
     write_TRADES_files(input_dict,
                        input_dict['Integrator']['output'][key],
@@ -55,12 +55,12 @@ for key in input_dict['Integrator']['planets_list']:
                       input_dict['Settings']['trades_command'] + ' > trades_exec.log \n')
     bash_script.write('cd $PWD_NOW\n')
 
-bash_script.write('mkdir -p ' + input_dict['Settings']['GLSout_dir'] + '\n')
+bash_script.write('mkdir -p ' + input_dict['GLS_directory']+ '\n')
 bash_script.write('python ' + input_dict['Settings']['code_dir'] + 'step_03.py '
                   + input_dict['Settings']['Input_yaml']+'\n')
-bash_script.write('cd ' + input_dict['Settings']['GLSout_dir'] + '\n')
+bash_script.write('cd ' + input_dict['GLS_directory']+ '\n')
 bash_script.write(input_dict['Settings']['GLS_command'] + '\n')
 bash_script.write('cd $PWD_NOW\n')
 
 pickle_saver(input_dict, "_step_02.p")
-print 'Now execute:   source ./exec_trades_step_02.source '
+print 'Now execute:   source ./'+ input_dict['Settings']['output_rad'] + '_exec_trades_step_02.source '

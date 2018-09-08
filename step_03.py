@@ -20,7 +20,7 @@ input_dict['Results']['RV_kep'] = data_planet
 input_dict['Results']['RV_dif'] = data_system[:, 1]-data_planet
 input_dict['Results']['RV_std'] = np.std(input_dict['Results']['RV_dif'])
 
-fileout = open(input_dict['Settings']['GLSout_dir'] + '/RV_diff.dat', 'w')
+fileout = open(input_dict['GLS_directory']+ '/RV_diff.dat', 'w')
 fileout.write('descriptor bjd rv,+- \n')
 for bb, rr in zip(input_dict['Results']['BJD'], input_dict['Results']['RV_dif']):
     fileout.write('{0:f} {1:f} 1.00 \n'.format(bb, rr))
@@ -32,7 +32,7 @@ plt.xlabel('BJD-2450000 [d]')
 plt.ylabel('RV$_{Dyn}$-RV$_{Kep}$ [ms$^{-1}$]')
 
 plt.plot(input_dict['Results']['BJD'],input_dict['Results']['RV_dif'])
-plt.savefig('Dyn_vs_Kep.pdf', bbox_inches='tight', dpi=300)
+plt.savefig(input_dict['Settings']['output_rad'] + '_Dyn_vs_Kep.pdf', bbox_inches='tight', dpi=300)
 plt.close(fig)
 
 pickle_saver(input_dict, "_output.p")

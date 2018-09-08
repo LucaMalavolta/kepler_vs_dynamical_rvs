@@ -31,7 +31,8 @@ def add_trades_index(input_dict):
 
 
 def clean_directory(input_dict):
-    os.system('rm -r ./trades')
-    os.system('rm -r ./*.p')
-    os.system('rm -r ./*.source')
-
+    os.system('rm -r ./'+ input_dict['Settings']['output_rad'] + '_trades')
+    os.system('rm -r ./'+ input_dict['Settings']['output_rad'] + '_GLS')
+    os.system('rm -r ./'+ input_dict['Settings']['output_rad'] + '_step_01.p')
+    os.system('rm -r ./'+ input_dict['Settings']['output_rad'] + '_step_02.p')
+    os.system('rm -r ./'+ input_dict['Settings']['output_rad'] + '_exec_*.source')

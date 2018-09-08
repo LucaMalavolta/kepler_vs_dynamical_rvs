@@ -33,13 +33,14 @@ input_dict['Integrator']['BJD0'] = np.arange(input_dict['Integrator']['BJD_range
                                              input_dict['Integrator']['BJD_step'], dtype=np.double)
 input_dict['Integrator']['BJD'] = input_dict['Integrator']['BJD0']+input_dict['Integrator']['Tref']
 
-bash_script = open('./exec_trades_step_01.source', 'w')
+bash_script = open('./'+ input_dict['Settings']['output_rad'] + '_exec_trades_step_01.source', 'w')
 bash_script.write('export PWD_NOW=$PWD\n')
 
 input_dict = get_planets_list(input_dict)
 input_dict = add_trades_index(input_dict)
 
-input_dict['Integrator']['output'] = {'system': './trades/system/'}
+input_dict['Integrator']['output'] = {'system': './'+ input_dict['Settings']['output_rad'] + '_trades/'}
+input_dict['GLS_directory'] = './'+ input_dict['Settings']['output_rad'] + '_GLS/'
 
 write_TRADES_files(input_dict,
                    input_dict['Integrator']['output']['system'],
@@ -52,4 +53,4 @@ bash_script.write('cd $PWD_NOW\n')
 pickle_saver(input_dict, "_step_01.p")
 
 print
-print 'Now execute:   source ./exec_trades_step_01.source '
+print 'Now execute:   source ./' + input_dict['Settings']['output_rad'] +  '_exec_trades_step_01.source '
