@@ -1,6 +1,7 @@
 import yaml
 import argparse
 import pickle
+from io import open
 
 
 def yaml_parser():
@@ -10,7 +11,7 @@ def yaml_parser():
     args = parser.parse_args()
     file_conf = args.config_file[0]
 
-    stream = file(file_conf, 'r')
+    stream = open(file_conf, 'r')
     config_out = yaml.load(stream)
     config_out['Settings']['Input_yaml'] = file_conf
     return config_out
@@ -25,8 +26,7 @@ def pickle_parser(append_name):
     args = parser.parse_args()
     file_conf = args.config_file[0]
 
-    stream = file(file_conf, 'r')
+    stream = open(file_conf, 'r')
     conf_temp = yaml.load(stream)
 
     return pickle.load(open(conf_temp['Settings']['output_rad']+append_name, "rb"))
-

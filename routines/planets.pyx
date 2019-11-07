@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.optimize import leastsq
-import kepler_exo as kp
-
+import routines.kepler_exo as kp
 
 def phase_calc(p, t_obs, period, e, omega):
     t_mod = kp.kepler_Tcent_T0P(period, p, e, omega)
@@ -9,7 +8,7 @@ def phase_calc(p, t_obs, period, e, omega):
 
 
 def compute_phase(input_dict):
-    for key in input_dict['Planets'].iterkeys():
+    for key, key_val in input_dict['Planets'].items():
         planet = input_dict['Planets'][key]
         planet['T0'] = planet['T0'] % planet['P']
         planet['f'] = 0.0

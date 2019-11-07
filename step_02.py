@@ -10,7 +10,7 @@ input_dict = pickle_parser("_step_01.p")
 
 input_dict['Planets_Original'] = input_dict['Planets']
 
-print 'planet, slope, intercept, r_value, p_value, std_err'
+print('planet, slope, intercept, r_value, p_value, std_err')
 for key in input_dict['Integrator']['planets_list']:
     file_transits = input_dict['Integrator']['output']['system'] + '1_0_NB' + \
           repr(input_dict['Planets'][key]['trades_index']) + '_tra.dat'
@@ -22,7 +22,7 @@ for key in input_dict['Integrator']['planets_list']:
     slope, intercept, r_value, p_value, std_err = stats.linregress(n_transit,T0_0)
     TTV = T0_0 - (slope*n_transit + intercept)
 
-    print key, slope, intercept, r_value, p_value, std_err
+    print(key, slope, intercept, r_value, p_value, std_err)
     if np.size(data_0) > 5:
         input_dict['Planets'][key]['T'] = intercept
         input_dict['Planets'][key]['P'] = slope
@@ -39,7 +39,7 @@ for key in input_dict['Integrator']['planets_list']:
 
     plt.close(fig)
 
-print
+print()
 
 bash_script = open('./'+ input_dict['Settings']['output_rad'] + '_exec_trades_step_02.source', 'w')
 bash_script.write('export PWD_NOW=$PWD\n')
@@ -63,4 +63,4 @@ bash_script.write(input_dict['Settings']['GLS_command'] + '\n')
 bash_script.write('cd $PWD_NOW\n')
 
 pickle_saver(input_dict, "_step_02.p")
-print 'Now execute:   source ./'+ input_dict['Settings']['output_rad'] + '_exec_trades_step_02.source '
+print('Now execute:   source ./'+ input_dict['Settings']['output_rad'] + '_exec_trades_step_02.source ')

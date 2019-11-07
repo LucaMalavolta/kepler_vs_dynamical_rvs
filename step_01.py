@@ -3,6 +3,7 @@ from routines.constants import *
 from routines.planets import compute_phase
 from routines.miscellanea import *
 from routines.write_TRADES_files import *
+import routines.kepler_exo as kp
 
 input_dict = yaml_parser()
 clean_directory(input_dict)
@@ -10,7 +11,7 @@ clean_directory(input_dict)
 input_dict['Settings']['trades_command'] = input_dict['Settings']['trades_dir'] + 'bin/trades_o_int_lm_bootstrap'
 input_dict['Settings']['GLS_command'] ='python ' + input_dict['Settings']['GLSmod_dir'] + 'gls_mod.py RV_diff.dat -fbeg 0.0001 -fend 0.500 -nfreq 20000 -ofile RV_diff -skipr 1 '
 
-for key in input_dict['Planets'].iterkeys():
+for key, key_val in input_dict['Planets'].items():
     planet = input_dict['Planets'][key]
 
     if 'R' not in planet: planet['R'] = 2.6
@@ -52,5 +53,5 @@ bash_script.write('cd $PWD_NOW\n')
 
 pickle_saver(input_dict, "_step_01.p")
 
-print
-print 'Now execute:   source ./' + input_dict['Settings']['output_rad'] +  '_exec_trades_step_01.source '
+print()
+print('Now execute:   source ./' + input_dict['Settings']['output_rad'] +  '_exec_trades_step_01.source ')
